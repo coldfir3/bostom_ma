@@ -5,9 +5,11 @@ library(tidyverse)
 dataset <- dataset_boston_housing()
 c(c(x_train, y_train), c(x_test, y_test)) %<-% dataset
 rm(dataset)
+save(x_train, y_train, x_test, y_test, file = 'dataset.data')
 
 mean <- apply(x_train, 2, mean)
 std <- apply(x_train, 2, sd)
+save(mean, std, file = 'scale.data')
 
 x_train <- scale(x_train, center = mean, scale = std)
 x_test <- scale(x_test, center = mean, scale = std)
